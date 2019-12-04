@@ -19,7 +19,7 @@ const App = () => {
             <Button handleClick={handleBadClick} text='bad' />
 
             <h1>statistics</h1>
-            <Display good={good} bad={bad} neutral={neutral} />
+            <Statistics good={good} bad={bad} neutral={neutral} />
         </div>
     )
 }
@@ -30,7 +30,7 @@ const Button = (props) => (
     </button>
 )
 
-const Display = (props) => {
+const Statistics = (props) => {
     const good = props.good
     const neutral = props.neutral
     const bad = props.bad
