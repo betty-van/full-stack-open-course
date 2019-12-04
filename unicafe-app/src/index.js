@@ -30,13 +30,24 @@ const Button = (props) => (
     </button>
 )
 
-const Display = (props) => (
-    <>
-        <p>{props.good}</p>
-        <p>{props.neutral}</p>
-        <p>{props.bad}</p>
-    </>
-)
+const Display = (props) => {
+    const good = props.good
+    const neutral = props.neutral
+    const bad = props.bad
+    const total = bad + good + neutral
+
+
+    return (
+        <>
+            <p>{good}</p>
+            <p>{neutral}</p>
+            <p>{bad}</p>
+            <p>all {good + bad + neutral}</p>
+            <p>average {((good*1) + (neutral*0) + (bad* -1)) / total}</p>
+            <p>positive {(good / total) * 100}%</p>
+        </>
+    )
+}
 
 
 
