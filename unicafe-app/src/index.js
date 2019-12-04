@@ -36,6 +36,12 @@ const Statistics = (props) => {
     const bad = props.bad
     const total = bad + good + neutral
 
+    if (total === 0) {
+        return (
+            <div>No feedback given</div>
+        )
+    }
+
 
     return (
         <>
