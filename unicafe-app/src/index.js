@@ -45,15 +45,23 @@ const Statistics = (props) => {
 
     return (
         <>
-            <p>{good}</p>
-            <p>{neutral}</p>
-            <p>{bad}</p>
-            <p>all {good + bad + neutral}</p>
-            <p>average {((good*1) + (neutral*0) + (bad* -1)) / total}</p>
-            <p>positive {(good / total) * 100}%</p>
+            <Statistic text='good' value={good} /><br></br>
+            <Statistic text='neutral' value={neutral} /><br></br>
+            <Statistic text='bad' value={bad} /><br></br>
+            <Statistic text='all' value={total} /><br></br>
+            <Statistic text='average' value={((good*1) + (neutral*0) + (bad* -1)) / total} /><br></br>
+            <Statistic text='positive' value={(good / total) * 100}  /> %
         </>
     )
 }
+
+const Statistic = ({value, text}) => (
+    <> 
+        {text} {value} 
+    </>
+)
+
+
 
 
 
