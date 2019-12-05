@@ -8,19 +8,15 @@ const App = (props) => {
         new Array(anecdotesLength + 1).join('0').split('').map(parseFloat)
     )
 
-
-    
     const randomQuote = (props) => {
        let randomNum = Math.floor(Math.random() * anecdotesLength) 
        setSelected(randomNum) 
     }
 
     const addVote = (props) => {
-        // Cannot do this, look over lecture
         const copy = { ...points}
         copy[selected] += 1
         setPoints(copy)
-        console.log('points', points)
     }
 
     return (
@@ -41,8 +37,6 @@ const Button = (props) => (
     </button>
 )
 
-
-
 const anecdotes = [
     'If it hurts, do it more often',
     'Adding manpower to a late software project makes it later!',
@@ -51,7 +45,6 @@ const anecdotes = [
     'Premature optimization is the root of all evil.',
     'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.'
 ]
-
 
 ReactDOM.render(
     <App anecdotes={anecdotes} />, 
