@@ -17,8 +17,10 @@ const App = (props) => {
 
     const addVote = (props) => {
         // Cannot do this, look over lecture
-        setPoints(points[selected] += 1)
-        console.log('points', points[selected])
+        const copy = { ...points}
+        copy[selected] += 1
+        setPoints(copy)
+        console.log('points', points)
     }
 
     return (
