@@ -4,16 +4,29 @@ import ReactDOM from 'react-dom';
 const App = (props) => {
     const [selected, setSelected] = useState(0)
     const anecdotesLength = props.anecdotes.length
+    const [points, setPoints] = useState(
+        new Array(anecdotesLength + 1).join('0').split('').map(parseFloat)
+    )
+
+
     
     const randomQuote = (props) => {
        let randomNum = Math.floor(Math.random() * anecdotesLength) 
        setSelected(randomNum) 
     }
 
+    const addVote = (props) => {
+        // Cannot do this, look over lecture
+        setPoints(points[selected] += 1)
+        console.log('points', points[selected])
+    }
+
     return (
         <div>
             {props.anecdotes[selected]}<br></br>
-            <Button handleClick={randomQuote} text='random quote' /> 
+            has {points[selected]} votes<br></br>
+            <Button handleClick={addVote} text='vote' /> 
+            <Button handleClick={randomQuote} text='random quote' />  
         </div>
     )
 
@@ -25,6 +38,8 @@ const Button = (props) => (
         {props.text}
     </button>
 )
+
+
 
 const anecdotes = [
     'If it hurts, do it more often',
