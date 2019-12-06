@@ -1,1 +1,1 @@
-# full-stack-open-part-1
+# full-stack-open
