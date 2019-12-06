@@ -8,12 +8,12 @@ const App = (props) => {
         new Array(anecdotesLength + 1).join('0').split('').map(parseFloat)
     )
 
-    const randomQuote = (props) => {
+    const randomQuote = () => {
        let randomNum = Math.floor(Math.random() * anecdotesLength) 
        setSelected(randomNum) 
     }
 
-    const addVote = (props) => {
+    const addVote = () => {
         const copy = { ...points}
         copy[selected] += 1
         setPoints(copy)
@@ -21,15 +21,45 @@ const App = (props) => {
 
     return (
         <div>
-            {props.anecdotes[selected]}<br></br>
-            has {points[selected]} votes<br></br>
-            <Button handleClick={addVote} text='vote' /> 
-            <Button handleClick={randomQuote} text='random quote' />  
+            <h1>Anecdote of the day</h1>
+            <div>
+                <Display anecdotes={anecdotes} points={points} selected={selected} />
+                <Button handleClick={addVote} text='vote' /> 
+                <Button handleClick={randomQuote} text='random quote' />  
+            </div>
+            
+            <h1>Anecdote with most votes</h1>
+            <MostVoted points={points} anecdotes={anecdotes} />
         </div>
     )
 
 
 }
+
+const MostVoted = (props) => {
+    let arr = Object.values(props.points)
+    let max = Math.max(...arr)
+    let keys = Object.keys(props.points)
+
+    for (let key of keys) {
+        if (props.points[key] === max) {
+            return (
+                <>
+                    {props.anecdotes[key]} <br></br>
+                    has {max} votes
+                </>
+            )
+
+        }
+    }
+}
+
+const Display = (props) => (
+    <>
+        {props.anecdotes[props.selected]}<br></br>
+        has {props.points[props.selected]} votes<br></br>
+    </>
+)
 
 const Button = (props) => (
     <button onClick={props.handleClick} >
