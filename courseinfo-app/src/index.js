@@ -1,12 +1,84 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from 'react'
+import ReactDOM from 'react-dom'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const App = () => {
+    const course = {
+        name: 'Half Stack application development',
+        parts: [
+        {
+            name: 'Fundamentals of React',
+            exercises:10,
+            id: 1
+        },
+        {
+            name: 'Using props to pass data',
+            exercises: 7,
+            id: 2
+        },
+        {
+            name: 'State of a component',
+            exercises: 14,
+            id: 3
+        },
+        {
+            name: 'Redux',
+            exercises: 11,
+            id: 4
+        }
+    ]
+}
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+    return (
+        <>
+            <Course course={course}  />
+        </>
+    )
+}
+
+const Course = (props) => {
+
+    const Header = (props) => {
+        return (
+            <>
+                <h1>{props.course.name}</h1>
+            </>
+        )
+    }
+
+    const Content = (props) => {
+
+        const Part = (props) => props.course.parts.map(part =>
+            <p key={part.id}> {part.name} {part.exercises}</p>
+        )
+
+        return (
+            <>
+                <Part course={props.course} />
+            </>
+        )
+    }
+
+    const Total = (props) => {
+        const total = props.course.parts.reduce(function (sum, part) {
+            return sum + part.exercises
+        }, 0 )
+
+        return (
+            <>
+                <p><b>total of {total} exercises</b></p>
+            </>
+        )
+    }
+
+    return (
+        <>
+            <Header course={props.course} />
+            <Content course={props.course} />
+            <Total course={props.course} />
+        </>
+    )
+}
+
+
+
+ReactDOM.render(<App />, document.getElementById('root'))
