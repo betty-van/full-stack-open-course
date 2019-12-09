@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
 
 const App = () => {
-    const [ persons, setPersons ] = useState([
-        { name: 'Arto Hellas', number: '040-1234567', id: 1}
-    ])
+    const [persons, setPersons] = useState([
+        { name: 'Arto Hellas', number: '040-123456', id: 1 },
+        { name: 'Ada Lovelace', number: '39-44-5323523', id: 2 },
+        { name: 'Dan Abramov', number: '12-43-234345', id: 3 },
+        { name: 'Mary Poppendieck', number: '39-23-6423122', id: 4 }
+      ])
 
     const [ newName, setNewName ] = useState('')
-    const [ newNumber, setNewNumber] = useState('')
+    const [ newNumber, setNewNumber ] = useState('')
+    const [ newFilter, setNewFilter ] = useState('')
 
     // Display the name of each person on render
-    const rows = () => persons.map(person => <p key={person.id}>{person.name} {person.number}</p>)
+    const rows = () => personsToShow.map(person => <p key={person.id}>{person.name} {person.number}</p>)
 
     // To add name
     const addName = (event) => {
@@ -49,9 +53,21 @@ const App = () => {
         setNewNumber(event.target.value)
     }
 
+    const handleFilterChange = (event) => {
+        setNewFilter(event.target.value)
+    }
+
+    // Check for letters of each name for filter
+    // Making names lowercase and filter to lowercase to match
+    const personsToShow = persons.filter(person => person.name.toLowerCase().indexOf(newFilter.toLowerCase()) !== -1)
+
     return (
         <div>
-            <h2>Phonebook</h2>
+            <h1>Phonebook</h1>
+            <div>
+                filter shown with a <input value={newFilter} onChange={handleFilterChange} />
+            </div>
+            <h2>add a new phone number</h2>
             <form onSubmit={addName}>
                 <div>
                     name: <input value={newName} onChange={handleNameChange} />
