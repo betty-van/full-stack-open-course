@@ -11,13 +11,24 @@ const App = () => {
 
     const addName = (event) => {
         event.preventDefault()
-        const nameObject = {
-            name: newName,
-            id: persons.length + 1
+        
+        const names = persons.map(person => person.name)
+
+        if (names.indexOf(newName) !== -1) {
+            alert(`${newName} already exists in the phonebook`)
+            setNewName('')
+        }
+        else if (names.indexOf(newName) === -1) {
+            const nameObject = {
+                name: newName,
+                id: persons.length + 1
+            }
+
+            setPersons(persons.concat(nameObject))
+            setNewName('')
         }
 
-        setPersons(persons.concat(nameObject))
-        setNewName('')
+        
     }
 
     const handleNameChange = (event) => {
