@@ -1,7 +1,8 @@
 import React from 'react'
 import Button from './Button'
+import Weather from './Weather'
 
-const Results = ({results, country, setCountry}) => {
+const Results = ({results, country, setCountry, weather, setWeather}) => {
     const countriesToShow = results.filter(result => result.name.toLowerCase().indexOf(country.toLowerCase()) !== -1)
     const rows = () => countriesToShow.map (result => 
         <div key={result.numericCode}> {result.name}
@@ -33,6 +34,7 @@ const Results = ({results, country, setCountry}) => {
                     {country.languages.map(language => <li key={language.name}>{language.name}</li>)}
                 </ul>
                 <img src={country.flag} alt="{country.name} flag" width='500px' />
+                <Weather weather={weather} setWeather={setWeather} country={country} />
             </div>
         )
     }

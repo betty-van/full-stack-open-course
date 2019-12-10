@@ -6,6 +6,7 @@ import Results from './components/Results'
 const App = () => {
     const [country, setCountry ] = useState('')
     const [results, setResults] = useState([])
+    const [weather, setWeather] = useState([])
 
     useEffect(() => {
         axios  
@@ -23,7 +24,7 @@ const App = () => {
     return (
         <>
             find countries <input value={country} onChange={handleCountryChange} />
-            <Results results={results} country={country} setCountry={setCountry} />
+            <Results results={results} country={country} setCountry={setCountry} weather={weather} setWeather={setWeather} />
         </>
     )
 }
