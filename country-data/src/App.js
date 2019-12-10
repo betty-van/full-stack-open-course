@@ -11,7 +11,6 @@ const App = () => {
         axios  
             .get('https://restcountries.eu/rest/v2/all')
             .then(response => {
-                console.log(response.data)
                 setResults(response.data)
             })
     }, [])
@@ -23,7 +22,7 @@ const App = () => {
     return (
         <>
             find countries <input value={country} onChange={handleCountryChange} />
-            <Results results={results} country={country} />
+            <Results results={results} country={country} setCountry={setCountry} />
         </>
     )
 }
