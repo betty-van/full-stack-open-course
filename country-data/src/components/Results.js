@@ -5,7 +5,7 @@ const Results = ({results, country, setCountry}) => {
     const countriesToShow = results.filter(result => result.name.toLowerCase().indexOf(country.toLowerCase()) !== -1)
     const rows = () => countriesToShow.map (result => 
         <div key={result.numericCode}> {result.name}
-            <Button result={result} setCountry={setCountry} />
+            <Button result={result} setCountry={setCountry} country={country} />
         </div>
     )
 
@@ -22,6 +22,7 @@ const Results = ({results, country, setCountry}) => {
     }
     else if (countriesToShow.length === 1) {
         const country = countriesToShow[0]
+
         return (
             <div>
                 <h1>{country.name}</h1>

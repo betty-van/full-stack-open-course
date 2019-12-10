@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Button = (props) => {
-    const handleClick = () => props.setCountry(props.result.name)
-    
+const Button = ({result, setCountry}) => {
+    const handleClick = () => setCountry(result.name)
+
     return (
         <button onClick={handleClick}>
-            {props.result.name}
+            {result.name}
         </button>
     )
 }
