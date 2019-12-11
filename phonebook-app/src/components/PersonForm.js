@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 
 const PersonForm = (props) => {
 
@@ -23,6 +24,13 @@ const PersonForm = (props) => {
                 id: props.persons.length + 1,
                 number: props.newNumber
             }
+
+            axios
+                .post('http://localhost:3001/persons', nameObject)
+                .then(response => {
+                    console.log(response)
+                })
+
 
             props.setPersons(props.persons.concat(nameObject))
             props.setNewName('')
