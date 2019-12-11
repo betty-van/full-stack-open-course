@@ -34,7 +34,7 @@ const App = () => {
                 <h2>add a new phone number</h2>
                 <PersonForm newName={newName} newNumber={newNumber} persons={persons} setPersons={setPersons} setNewName={setNewName} setNewNumber={setNewNumber}/>
                 <h2>Numbers</h2>
-                <Person persons={persons} newFilter={newFilter} />
+                <Person persons={persons} setPersons={setPersons} newFilter={newFilter} />
                 
             </div>
             

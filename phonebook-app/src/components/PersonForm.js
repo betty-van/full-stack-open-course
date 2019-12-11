@@ -21,17 +21,20 @@ const PersonForm = (props) => {
         else if (names.indexOf(props.newName) === -1) {
             const nameObject = {
                 name: props.newName,
-                id: props.persons.length + 1,
                 number: props.newNumber
             }
 
             personsService
                 .create(nameObject)
                 .then(response => {
-                       props.setPersons(props.persons.concat(response.data))
+                    console.log(response)
+                    props.setPersons(props.persons.concat(response))
                     props.setNewName('')
                     props.setNewNumber('')
                     })
+                .catch(error => {
+                    console.log('something went wrong', error)
+                })
             } 
     }
 
