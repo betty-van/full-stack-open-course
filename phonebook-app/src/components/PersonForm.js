@@ -13,9 +13,21 @@ const PersonForm = (props) => {
 
         // If name matches, then do not add to list
         if (names.indexOf(props.newName) !== -1) {
-            alert(`${props.newName} already exists in the phonebook`)
-            props.setNewName('')
-            props.setNewNumber('')
+            const result = window.confirm(`${props.newName} already exists in the phonebook, replace the old number with a new one?`)
+            const thisPerson = props.persons.find(p => p.name === props.newName)
+            const changedPerson = {...thisPerson, number: props.newNumber}
+            
+            if (result === true) {
+                personsService
+                    .update(thisPerson.id, changedPerson)
+                    .then(response => {
+                        console.log(response)
+                        props.setPersons(props.persons.map(person => person.id !== thisPerson.id ? person : response))
+                    })
+
+                props.setNewName('')
+                props.setNewNumber('')
+            }
         }
         // If name does not exist, add to list
         else if (names.indexOf(props.newName) === -1) {

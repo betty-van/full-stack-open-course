@@ -16,8 +16,14 @@ const remove = (id) => {
     return request.then(() => `${id} was removed from the server`)
 }
 
+const update = (id, nameObject) => {
+    const request = axios.put(`${baseUrl}/${id}`, nameObject)
+    return request.then(response => response.data)
+  }
+
 export default { 
     getAll: getAll,
     create: create,
-    remove: remove
+    remove: remove,
+    update: update
 }
