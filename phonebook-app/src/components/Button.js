@@ -12,14 +12,13 @@ const Button = ({person, setPersons, persons}) => {
                 .then(response => {
                     console.log(`${person.name}`, response)
                 })
-
-                refreshPage()
+                .then(() => {
+                    const result = persons.filter(p => p.name !== person.name)
+                    setPersons(result)
+                })  
         }
     }
 
-    const refreshPage = () => {
-        window.location.reload(false)
-    }
 
     return (
         <button onClick={handleClick}>
