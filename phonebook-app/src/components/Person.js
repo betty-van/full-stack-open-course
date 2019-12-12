@@ -2,11 +2,11 @@ import React from 'react'
 import Button from './Button'
 
 // Display the name of each person on render
-const Person = (props) => {
+const Person = ({persons, setPersons, newFilter}) => {
 
-    const personsToShow = props.persons.filter(person => person.name.toLowerCase().indexOf(props.newFilter.toLowerCase()) !== -1)
+    const personsToShow = persons.filter(person => person.name.toLowerCase().indexOf(newFilter.toLowerCase()) !== -1)
     const rows = () => personsToShow.map(person => 
-        <p key={person.id}> {person.name} {person.number} <Button person={person} persons={props.persons} setPersons={props.setPersons} /></p>
+        <p key={person.id}> {person.name} {person.number} <Button person={person} persons={persons} setPersons={setPersons} /></p>
     )
     
     return (rows())

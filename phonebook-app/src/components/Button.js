@@ -12,7 +12,13 @@ const Button = ({person, setPersons, persons}) => {
                 .then(response => {
                     console.log(`${person.name}`, response)
                 })
+
+                refreshPage()
         }
+    }
+
+    const refreshPage = () => {
+        window.location.reload(false)
     }
 
     return (
