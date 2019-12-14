@@ -15,6 +15,7 @@ const requestLogger = (request, response, next) => {
     next()
 }
 
+// Works now
 app.use(requestLogger)
 
 let notes = [
