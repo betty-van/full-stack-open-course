@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const cors = require('cors')
+const mongoose = require('mongoose')
 
 app.use(bodyParser.json())
 app.use(cors())
@@ -15,8 +16,32 @@ const requestLogger = (request, response, next) => {
     next()
 }
 
-// Works now
 app.use(requestLogger)
+
+
+// To  conect to be a MongoDB
+const password = process.argv[2]
+
+const url = 
+    `mongodb+srv://fullstack:${ password }@cluster0-3lf82.mongodb.net/note-app?retryWrites=true&w=majority`
+
+mongoose.connect(url, { useNewUrlParser: true })
+
+const noteSchema = new mongoose.Schema({
+    content: String,
+    date: Date,
+    important: Boolean
+})
+
+const Note = mongoose.model('Note', noteSchema)
+
+noteSchema.set('toJSON', {
+    transform: (document, returnedObject) => {
+        returnedObject.id = returnedObject._id.toString()
+        delete returnedObject._id
+        delete returnedObject.__v
+    }
+})
 
 let notes = [
     {
@@ -43,9 +68,11 @@ app.get('/', (req, res) => {
     res.send('<h1>Hello World!</h1>')
 })
 
-app.get('/api/notes', (req, res) => {
-    res.json(notes)
-})
+app.get('/api/notes', (request, response) => {
+    Note.find({}).then(notes => {
+        response.json(notes.map(note => note.toJSON()))
+    });
+  });
 
 app.get('/api/notes/:id', (request, response) => {
     const id = Number(request.params.id)
