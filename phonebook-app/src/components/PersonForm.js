@@ -66,6 +66,7 @@ const PersonForm = ({persons, newName, newNumber, setNewName, setNewNumber, setP
                     }, 5000)
                     })
                 .catch(error => {
+                    console.log(error.response.data)
                     setErrorMessage(
                         `Unable to add '${newName}'`
                     )
