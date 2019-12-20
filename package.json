@@ -1,0 +1,19 @@
+{
+  "name": "full-stack-open-part-4-notes",
+  "version": "1.0.0",
+  "description": "Exercises for https://fullstackopen.com/en",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/betty-van/full-stack-open-course.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/betty-van/full-stack-open-course/issues"
+  },
+  "homepage": "https://github.com/betty-van/full-stack-open-course#readme"
+}
