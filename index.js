@@ -49,10 +49,10 @@ app.get('/', (req, res) => {
 app.get('/api/notes', (request, response) => {
     Note.find({}).then(notes => {
         response.json(notes.map(note => note.toJSON()))
-    });
-  });
+    })
+})
 
-app.get('/api/notes/:id', (request, response) => {
+app.get('/api/notes/:id', (request, response, next) => {
     Note.findById(request.params.id)
         .then(note => {
             if(note) {
@@ -72,7 +72,7 @@ app.delete('/api/notes/:id', (request, response) => {
         .catch(error => next(error))
 })
 
-app.post('/api/notes', (request, response) => {
+app.post('/api/notes', (request, response, next) => {
     const body = request.body
 
     if (body.content === undefined) {
